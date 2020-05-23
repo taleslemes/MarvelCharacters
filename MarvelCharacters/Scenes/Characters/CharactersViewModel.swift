@@ -10,4 +10,8 @@ import Foundation
 
 final class CharactersViewModel {
     
+    // MARK: Properties
+    
+    let title: String = "Characters"
+    
 }

@@ -13,6 +13,11 @@
 		2DC96C44247945A7006E4E91 /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC96C43247945A7006E4E91 /* CharactersViewController.swift */; };
 		2DC96C46247946C5006E4E91 /* CharactersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC96C45247946C5006E4E91 /* CharactersRouter.swift */; };
 		2DC96C4824794731006E4E91 /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC96C4724794731006E4E91 /* CharactersViewModel.swift */; };
+		2DC96C4A24794EC9006E4E91 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC96C4924794EC9006E4E91 /* UIColor.swift */; };
+		2DC96C4D24794F37006E4E91 /* StyleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC96C4C24794F37006E4E91 /* StyleSheet.swift */; };
+		2DC96C4F2479501B006E4E91 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC96C4E2479501B006E4E91 /* UIFont.swift */; };
+		2DC96C522479551A006E4E91 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC96C512479551A006E4E91 /* UIViewController.swift */; };
+		2DC96C5424795650006E4E91 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC96C5324795650006E4E91 /* CharacterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		2DC96C43247945A7006E4E91 /* CharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewController.swift; sourceTree = "<group>"; };
 		2DC96C45247946C5006E4E91 /* CharactersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRouter.swift; sourceTree = "<group>"; };
 		2DC96C4724794731006E4E91 /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
+		2DC96C4924794EC9006E4E91 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		2DC96C4C24794F37006E4E91 /* StyleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSheet.swift; sourceTree = "<group>"; };
+		2DC96C4E2479501B006E4E91 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		2DC96C512479551A006E4E91 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		2DC96C5324795650006E4E91 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,7 @@
 				2DC96C3F2479447B006E4E91 /* Errors */,
 				2DC96C40247944C4006E4E91 /* Entities */,
 				2DC96C3C2479436C006E4E91 /* Scenes */,
+				2DC96C4B24794F20006E4E91 /* Colors */,
 				2DC96C3D24794375006E4E91 /* Extensions */,
 				2DC96C3A2479430E006E4E91 /* Resources */,
 			);
@@ -104,6 +115,9 @@
 		2DC96C3E247943A1006E4E91 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2DC96C4924794EC9006E4E91 /* UIColor.swift */,
+				2DC96C4E2479501B006E4E91 /* UIFont.swift */,
+				2DC96C512479551A006E4E91 /* UIViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -125,6 +139,7 @@
 		2DC96C41247944F7006E4E91 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
+				2DC96C5524795655006E4E91 /* Cell */,
 				2DC96C43247945A7006E4E91 /* CharactersViewController.swift */,
 				2DC96C4724794731006E4E91 /* CharactersViewModel.swift */,
 				2DC96C45247946C5006E4E91 /* CharactersRouter.swift */,
@@ -137,6 +152,22 @@
 			children = (
 			);
 			path = CharacterDetails;
+			sourceTree = "<group>";
+		};
+		2DC96C4B24794F20006E4E91 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				2DC96C4C24794F37006E4E91 /* StyleSheet.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		2DC96C5524795655006E4E91 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2DC96C5324795650006E4E91 /* CharacterCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,7 +243,12 @@
 				2DC96C4824794731006E4E91 /* CharactersViewModel.swift in Sources */,
 				2DC96C44247945A7006E4E91 /* CharactersViewController.swift in Sources */,
 				2DC96C46247946C5006E4E91 /* CharactersRouter.swift in Sources */,
+				2DC96C5424795650006E4E91 /* CharacterCell.swift in Sources */,
+				2DC96C4F2479501B006E4E91 /* UIFont.swift in Sources */,
 				2DC96C27247942CB006E4E91 /* AppDelegate.swift in Sources */,
+				2DC96C4A24794EC9006E4E91 /* UIColor.swift in Sources */,
+				2DC96C522479551A006E4E91 /* UIViewController.swift in Sources */,
+				2DC96C4D24794F37006E4E91 /* StyleSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
