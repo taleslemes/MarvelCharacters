@@ -98,9 +98,3 @@ extension CharactersViewController: UICollectionViewDataSource {
 extension CharactersViewController: UICollectionViewDelegate {
 
 }
-
-// MARK: UICollectionViewDelegateFlowLayout Interface Implementation
-
-extension CharactersViewController: UICollectionViewDelegateFlowLayout {
-
-}

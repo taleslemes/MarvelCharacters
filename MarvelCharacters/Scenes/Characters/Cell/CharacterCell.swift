@@ -56,7 +56,6 @@ final class CharacterCell: UICollectionViewCell {
     
     private func setupCellLayout() {
         layer.cornerRadius = 5
-        backgroundColor = .black
     }
     
     private func setupImageView() {

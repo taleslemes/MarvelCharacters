@@ -6,7 +6,7 @@
 //  Copyright © 2020 Tales Lemes. All rights reserved.
 //
 
-import Foundation
+import RxSwift
 
 final class CharactersViewModel {
     
@@ -15,3 +15,4 @@ final class CharactersViewModel {
     let title: String = "Characters"
     
 }
+

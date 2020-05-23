@@ -16,17 +16,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MARVEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMG-hU-QLa">
-                                <rect key="frame" x="82" y="351" width="211" height="110"/>
-                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Bold" family="Noto Sans Myanmar" pointSize="50"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Marvel_logo" translatesAutoresizingMaskIntoConstraints="NO" id="7u7-5a-pmO">
+                                <rect key="frame" x="50" y="265.66666666666669" width="275" height="281.00000000000006"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.94117647058823528" green="0.074509803921568626" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="oMG-hU-QLa" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="42k-HX-Tye"/>
-                            <constraint firstItem="oMG-hU-QLa" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PvG-I8-jqh"/>
+                            <constraint firstItem="7u7-5a-pmO" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="OEi-j1-4dH"/>
+                            <constraint firstAttribute="trailing" secondItem="7u7-5a-pmO" secondAttribute="trailing" constant="50" id="QeH-hi-nMX"/>
+                            <constraint firstItem="7u7-5a-pmO" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="50" id="WGZ-qt-Fvf"/>
+                            <constraint firstItem="7u7-5a-pmO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ufW-nb-ZVD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -36,4 +35,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Marvel_logo" width="700" height="281"/>
+    </resources>
 </document>

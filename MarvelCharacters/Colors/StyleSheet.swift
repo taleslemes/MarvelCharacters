@@ -11,7 +11,7 @@ import UIKit
 extension UIColor {
     
     static var marvelRed: UIColor {
-        return UIColor(hex: "F0131E")
+        return UIColor(hex: "961e18")
     }
     
 }
