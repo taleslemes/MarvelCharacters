@@ -24,3 +24,7 @@ protocol CharactersServiceOutput: AnyObject {
     func fetchCharactersSucceeded(response: [Character])
     func fetchCharactersFailed(error: Error)
 }
+
+protocol CharactersRoutering: AnyObject {
+    func navigateToCharacterDetailsScene(character: Character)
+}

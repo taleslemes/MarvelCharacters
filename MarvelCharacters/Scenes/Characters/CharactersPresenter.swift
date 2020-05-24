@@ -13,6 +13,7 @@ final class CharactersPresenter {
     // MARK: Properties
     
     private let service: CharactersServiceInput
+    private let router: CharactersRoutering
     weak var view: CharactersView?
     
     let title: String = "Characters"
@@ -22,7 +23,8 @@ final class CharactersPresenter {
     
     // MARK: Object Lifecycle
     
-    init(service: CharactersServiceInput) {
+    init(router: CharactersRoutering, service: CharactersServiceInput) {
+        self.router = router
         self.service = service
         service.output = self
     }
@@ -38,6 +40,11 @@ final class CharactersPresenter {
         service.fetchCharacters(offset: "\(offset)")
         isFetchingCharacters = true
         offset += 20
+    }
+    
+    func didSelectItemAt(index: Int) {
+        let selectedCharacter = model[index]
+        router.navigateToCharacterDetailsScene(character: selectedCharacter)
     }
         
 }

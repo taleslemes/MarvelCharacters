@@ -10,12 +10,29 @@ import UIKit
 
 final class CharactersRouter {
     
+    private weak var context: UIViewController?
+    
     func makeViewController() -> UIViewController {
+        let router = self
         let service = CharactersService()
-        let presenter = CharactersPresenter(service: service)
+        let presenter = CharactersPresenter(router: router, service: service)
         let viewController = CharactersViewController(presenter: presenter)
+        
+        context = viewController
         
         return viewController
     }
     
 }
+
+// MARK: CharactersRoutering Interface Implementation
+
+extension CharactersRouter: CharactersRoutering {
+    
+    func navigateToCharacterDetailsScene(character: Character) {
+        let router = CharacterDetailsRouter(character: character)
+        context?.navigationController?.pushViewController(router.makeViewController(), animated: true)
+    }
+    
+}
+
