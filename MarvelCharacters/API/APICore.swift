@@ -10,18 +10,13 @@ import Foundation
 import RxSwift
 
 protocol APIProvider: AnyObject {
-    func request<T: Decodable>(offset: String, completion: @escaping (Result<T, Error>) -> Void)
-    func request<T: Decodable>(offset: String) -> Single<T>
+    func request<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> Void)
 }
 
 final class APICore: APIProvider {
     
-    func request<T>(offset: String) -> (PrimitiveSequence<SingleTrait, T>) where T : Decodable {
-        return rx.request(offset: offset)
-    }
-    
-    func request<T>(offset: String, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
-        guard let request = makeRequest(offset: offset) else { return }
+    func request<T>(url: URL, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
+        guard let request = makeRequest(url: url) else { return }
         
         URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
             guard let urlResponse = urlResponse as? HTTPURLResponse else {
@@ -45,21 +40,7 @@ final class APICore: APIProvider {
         }.resume()
     }
     
-    private func makeRequest(offset: String) -> URLRequest? {
-        
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = Path.marvelBase
-        components.path = Path.charactersPath
-        components.queryItems = [
-            URLQueryItem(name: "apikey", value: Path.publicKey),
-            URLQueryItem(name: "ts", value: Path.ts),
-            URLQueryItem(name: "hash", value: Path.hash),
-            URLQueryItem(name: "limit", value: "20"),
-            URLQueryItem(name: "offset", value: offset),
-        ]
-        
-        guard let url = components.url else { return nil }
+    private func makeRequest(url: URL) -> URLRequest? {
         
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 10)
         
@@ -69,25 +50,4 @@ final class APICore: APIProvider {
         return request
     }
     
-}
-
-// MARK: Turn APICore Reactive
-
-extension APICore: ReactiveCompatible {}
-
-extension Reactive where Base == APICore {
-    func request<T: Decodable>(offset: String) -> Single<T> {
-        return Single.create { [weak base] single -> Disposable in
-            base?.request(offset: offset, completion: { (result: Result<T, Error>) in
-                switch result {
-                case .success(let value):
-                    return single(.success(value))
-                case .failure(let error):
-                    return single(.error(error))
-                }
-            })
-            
-            return Disposables.create { }
-        }
-    }
 }

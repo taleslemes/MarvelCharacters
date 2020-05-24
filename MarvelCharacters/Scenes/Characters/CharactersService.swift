@@ -8,7 +8,46 @@
 
 import Foundation
 
-final class CharactersService {
+final class CharactersService: CharactersServiceInput {
     
+    // MARK: Properties
     
+    weak var output: CharactersServiceOutput?
+    private let api: APIProvider
+    
+    // MARK: Object Lifecycle
+    
+    init(api: APIProvider = APICore()) {
+        self.api = api
+    }
+    
+    // MARK: CharactersServiceInput Interface Implementation
+    
+    func fetchCharacters(offset: String) {
+        
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = Path.marvelBase
+        components.path = Path.charactersPath
+        components.queryItems = [
+            URLQueryItem(name: "apikey", value: Path.publicKey),
+            URLQueryItem(name: "ts", value: Path.ts),
+            URLQueryItem(name: "hash", value: Path.hash),
+            URLQueryItem(name: "limit", value: "20"),
+            URLQueryItem(name: "offset", value: offset),
+        ]
+        
+        guard let url = components.url else { return }
+        
+        api.request(url: url) { (response: Result<APIResponse, Error>) in
+            switch response {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+
 }

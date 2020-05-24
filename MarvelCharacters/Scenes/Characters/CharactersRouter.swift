@@ -11,7 +11,8 @@ import UIKit
 final class CharactersRouter {
     
     func makeViewController() -> UIViewController {
-        let viewModel = CharactersViewModel()
+        let service = CharactersService()
+        let viewModel = CharactersViewModel(service: service)
         let viewController = CharactersViewController(viewModel: viewModel)
         
         return viewController

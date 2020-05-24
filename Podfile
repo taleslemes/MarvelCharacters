@@ -8,7 +8,5 @@ target 'MarvelCharacters' do
   # Pods for MarvelCharacters
 
    pod 'CryptoSwift'
-   pod 'RxSwift'
-   pod 'RxCocoa'	
 
 end

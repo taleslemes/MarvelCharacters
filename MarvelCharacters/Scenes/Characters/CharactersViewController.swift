@@ -48,8 +48,9 @@ final class CharactersViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
         setupCollectionView()
+        
+        viewModel.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
