@@ -34,8 +34,9 @@ final class CharactersRouter {
 extension CharactersRouter: CharactersRoutering {
     
     func navigateToCharacterDetailsScene(character: Character) {
-        let router = CharacterDetailsRouter(character: character)
-        context?.navigationController?.pushViewController(router.makeViewController(), animated: true)
+        guard let context = context else { return }
+        let router = CharacterDetailsRouter(character: character, context: context)
+        context.navigationController?.pushViewController(router.makeViewController(), animated: true)
     }
     
 }

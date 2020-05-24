@@ -13,12 +13,14 @@ final class CharacterDetailsPresenter {
     // MARK: Properties
     
     let model: Character
+    private let router: CharacterDetailsRoutering
     weak var view: CharacterDetailsView?
     
     // MARK: Object Lifecycle
     
-    init(model: Character) {
+    init(model: Character, router: CharacterDetailsRoutering) {
         self.model = model
+        self.router = router
     }
     
     // MARK: Public Methods
@@ -28,6 +30,10 @@ final class CharacterDetailsPresenter {
         view?.setCharacterName(with: model.name ?? "")
         setCharacterDescription()
         setImageView()
+    }
+    
+    func comicsButtonDidTap() {
+        router.navigateToComicsScene(comics: model.comics)
     }
     
     // MARK: Private Methods

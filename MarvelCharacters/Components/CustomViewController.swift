@@ -31,4 +31,22 @@ class CustomViewController: UIViewController {
         self.navigationItem.titleView = navigationTitleLabel
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupNavigationController()
+    }
+    
+    // MARK: Setup Layout Methods
+    
+    private func setupNavigationController() {
+        navigationController?.navigationBar.barTintColor = .marvelRed
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.barStyle = .black
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
+    }
+    
 }

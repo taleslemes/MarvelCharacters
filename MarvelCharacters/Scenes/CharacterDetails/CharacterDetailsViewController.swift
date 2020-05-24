@@ -31,6 +31,8 @@ final class CharacterDetailsViewController: CustomViewController {
     private let imageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
+        image.layer.borderWidth = 3
+        image.layer.borderColor = UIColor.black.cgColor
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         
@@ -59,18 +61,22 @@ final class CharacterDetailsViewController: CustomViewController {
         return label
     }()
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.isScrollEnabled = true
-        tableView.isUserInteractionEnabled = false
-        tableView.register(ComicCell.self, forCellReuseIdentifier: ComicCell.identifier)
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var comicsButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Check Comics!", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .Arial(withWeight: .bold, size: 20)
+        button.backgroundColor = .marvelRed
+        button.showsTouchWhenHighlighted = true
+        button.addTarget(self, action: #selector(comicsButtonDidTap), for: .touchUpInside)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 1)
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowRadius = 5
+        button.layer.masksToBounds = false
+        button.translatesAutoresizingMaskIntoConstraints = false
         
-        return tableView
+        return button
     }()
     
     private let presenter: CharacterDetailsPresenter
@@ -99,7 +105,7 @@ final class CharacterDetailsViewController: CustomViewController {
         setupImageView()
         setupCharacterNameLabel()
         setupCharacterDescriptionLabel()
-        setupTableView()
+        setupComicsButton()
         
         presenter.viewDidLoad()
     }
@@ -112,7 +118,7 @@ final class CharacterDetailsViewController: CustomViewController {
         contentView.addSubview(imageView)
         contentView.addSubview(characterNameLabel)
         contentView.addSubview(characterDescriptionLabel)
-        contentView.addSubview(tableView)
+        contentView.addSubview(comicsButton)
     }
     
     private func setupScrollView() {
@@ -157,33 +163,20 @@ final class CharacterDetailsViewController: CustomViewController {
         ])
     }
     
-    private func setupTableView() {
+    private func setupComicsButton() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(greaterThanOrEqualTo: characterDescriptionLabel.bottomAnchor, constant: 10),
-            tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
-            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            comicsButton.topAnchor.constraint(equalTo: characterDescriptionLabel.bottomAnchor, constant: 40),
+            comicsButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            comicsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            comicsButton.heightAnchor.constraint(equalToConstant: 50),
+            comicsButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
     }
     
-}
-
-// MARK: UITableViewDataSource Interface Implementation
-
-extension CharacterDetailsViewController: UITableViewDataSource, UITableViewDelegate {
+    // MARK: Tap Button Methods
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.model.comics.items.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ComicCell.identifier, for: indexPath) as? ComicCell else { return UITableViewCell() }
-    
-        let cellModel: ComicSummary = presenter.model.comics.items[indexPath.row]
-        let cellPresenter = ComicCellPresenter(model: cellModel)
-        cell.attachPresenter(cellPresenter)
-        
-        return cell
+    @objc private func comicsButtonDidTap() {
+        presenter.comicsButtonDidTap()
     }
     
 }

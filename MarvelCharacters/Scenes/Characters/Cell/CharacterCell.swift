@@ -13,19 +13,26 @@ final class CharacterCell: UICollectionViewCell {
     // MARK: Properties
     
     private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.borderWidth = 3
-        imageView.layer.borderColor = UIColor.black.cgColor
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 5
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "test")
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.layer.borderWidth = 3
+        image.layer.borderColor = UIColor.black.cgColor
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 5
+        image.translatesAutoresizingMaskIntoConstraints = false
         
-        return imageView
+        return image
     }()
     
-    private let titleLabel: UILabel = {
+    private let blackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private let characterNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.Arial(withWeight: .bold, size: 20)
         label.textColor = .white
@@ -45,9 +52,11 @@ final class CharacterCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        createSubviews()
         setupCellLayout()
         setupImageView()
-        setupTitleLabel()
+        setupBlackView()
+        setupCharacterNameLabel()
     }
     
     @available(*, unavailable)
@@ -59,9 +68,13 @@ final class CharacterCell: UICollectionViewCell {
         layer.cornerRadius = 5
     }
     
-    private func setupImageView() {
+    private func createSubviews() {
         addSubview(imageView)
-        
+        addSubview(blackView)
+        addSubview(characterNameLabel)
+    }
+    
+    private func setupImageView() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -70,14 +83,21 @@ final class CharacterCell: UICollectionViewCell {
         ])
     }
     
-    private func setupTitleLabel() {
-        addSubview(titleLabel)
-        
+    private func setupBlackView() {
         NSLayoutConstraint.activate([
-            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+            blackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            blackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            blackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            blackView.heightAnchor.constraint(equalToConstant: frame.height * 0.25)
+        ])
+    }
+    
+    private func setupCharacterNameLabel() {
+        NSLayoutConstraint.activate([
+            characterNameLabel.centerXAnchor.constraint(equalTo: blackView.centerXAnchor),
+            characterNameLabel.centerYAnchor.constraint(equalTo: blackView.centerYAnchor),
+            characterNameLabel.leadingAnchor.constraint(greaterThanOrEqualTo: blackView.leadingAnchor, constant: 5),
+            characterNameLabel.trailingAnchor.constraint(lessThanOrEqualTo: blackView.trailingAnchor, constant: 5)
         ])
     }
     
@@ -94,7 +114,7 @@ final class CharacterCell: UICollectionViewCell {
 extension CharacterCell: CharacterCellView {
     
     func setTitle(with text: String) {
-        titleLabel.text = text
+        characterNameLabel.text = text
     }
     
     func setImage(with imageUrl: String) {
