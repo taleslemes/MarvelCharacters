@@ -12,6 +12,7 @@ protocol CharactersView: AnyObject {
     func showLoader()
     func hideLoader()
     func showError(message: String)
+    func reloadCollectionViewData()
 }
 
 protocol CharactersServiceInput: AnyObject {
@@ -20,6 +21,6 @@ protocol CharactersServiceInput: AnyObject {
 }
 
 protocol CharactersServiceOutput: AnyObject {
-    func fetchCharactersSucceeded(response: APIResponse)
+    func fetchCharactersSucceeded(response: [Character])
     func fetchCharactersFailed(error: Error)
 }

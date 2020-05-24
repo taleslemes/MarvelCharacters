@@ -17,21 +17,3 @@ struct DataStruct: Decodable {
     var results: [Character]?
 }
 
-struct Character: Decodable {
-    var name: String?
-    var thumbnail : ThumbNail?
-    var comics: Comics
-    var description : String?
-}
-
-struct ThumbNail: Decodable {
-    var path: String?
-}
-
-struct Comics: Decodable {
-    var items: [ComicSummary]
-}
-
-struct ComicSummary: Decodable {
-    var name: String?
-}

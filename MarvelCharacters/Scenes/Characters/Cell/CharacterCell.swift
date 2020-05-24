@@ -25,14 +25,13 @@ final class CharacterCell: UICollectionViewCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.Arial(withWeight: .bold, size: 22)
-        label.textColor = .white
+        label.font = UIFont.Arial(withWeight: .bold, size: 20)
+        label.textColor = .black
         label.textAlignment = .center
         label.numberOfLines = 2
         label.sizeToFit()
         label.minimumScaleFactor = 0.5
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Spider-Man"
         
         return label
     }()
@@ -74,8 +73,32 @@ final class CharacterCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
         ])
     }
     
+    // MARK: Public Methods
+    
+    func attachPresenter(_ presenter: CharacterCellPresenter) {
+        presenter.attachView(self)
+    }
+    
 }
+
+// MARK: CharacterCellView Interface Implementation
+
+extension CharacterCell: CharacterCellView {
+    
+    func setTitle(with text: String) {
+        titleLabel.text = text
+    }
+    
+    func setImage(with imageUrl: String) {
+//        imageView.loadImage(from:  "http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_xlarge.jpg", placeHolder: UIImage(named: "placeholder"))
+        imageView.loadImage(from: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")
+    }
+    
+}
+

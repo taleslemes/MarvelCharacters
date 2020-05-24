@@ -12,8 +12,8 @@ final class CharactersRouter {
     
     func makeViewController() -> UIViewController {
         let service = CharactersService()
-        let viewModel = CharactersViewModel(service: service)
-        let viewController = CharactersViewController(viewModel: viewModel)
+        let presenter = CharactersPresenter(service: service)
+        let viewController = CharactersViewController(presenter: presenter)
         
         return viewController
     }

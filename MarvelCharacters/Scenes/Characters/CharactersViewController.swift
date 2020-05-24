@@ -29,14 +29,14 @@ final class CharactersViewController: UIViewController {
         return collection
     }()
     
-    private let viewModel: CharactersViewModel
+    private let presenter: CharactersPresenter
     
     // MARK: Object Lifecycle
     
-    init(viewModel: CharactersViewModel) {
-        self.viewModel = viewModel
-        
+    init(presenter: CharactersPresenter) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+        presenter.view = self
     }
     
     @available(*, unavailable)
@@ -50,7 +50,7 @@ final class CharactersViewController: UIViewController {
         view.backgroundColor = .white
         setupCollectionView()
         
-        viewModel.viewDidLoad()
+        presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +60,7 @@ final class CharactersViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white,
                                                                    .font: UIFont.Arial(withWeight: .bold, size: 28)]
-        navigationItem.title = viewModel.title
+        navigationItem.title = presenter.title
     }
     
     // MARK: Setup Layout Methods
@@ -83,11 +83,15 @@ final class CharactersViewController: UIViewController {
 extension CharactersViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return presenter.model.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.identifier, for: indexPath) as? CharacterCell else { return UICollectionViewCell() }
+        
+        let cellModel: Character = presenter.model[indexPath.row]
+        let cellPresenter = CharacterCellPresenter(model: cellModel)
+        cell.attachPresenter(cellPresenter)
         
         return cell
     }
@@ -98,4 +102,49 @@ extension CharactersViewController: UICollectionViewDataSource {
 
 extension CharactersViewController: UICollectionViewDelegate {
 
+}
+
+// MARK: UIScrollViewDelegate Interface Implementation
+
+extension CharactersViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        /// Here we check where the user is in the Y axis
+        if offsetY / contentHeight > 0.7 && !presenter.isFetchingCharacters {
+            getMoreCharactersFromServer()
+        }
+    }
+
+    private func getMoreCharactersFromServer() {
+        presenter.fetchCharacters()
+    }
+    
+}
+
+// MARK: CharactersView Interface Implementation
+
+extension CharactersViewController: CharactersView {
+    
+    func showLoader() {
+        Loader.show(in: self)
+    }
+    
+    func hideLoader() {
+        Loader.hide()
+    }
+    
+    func showError(message: String) {
+        showAlert(message: message)
+    }
+    
+    func reloadCollectionViewData() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
 }

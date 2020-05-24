@@ -39,12 +39,12 @@ final class CharactersService: CharactersServiceInput {
         
         guard let url = components.url else { return }
         
-        api.request(url: url) { (response: Result<APIResponse, Error>) in
+        api.request(url: url) { [output] (response: Result<APIResponse, Error>) in
             switch response {
             case .success(let response):
-                print(response)
+                output?.fetchCharactersSucceeded(response: response.data?.results ?? [])
             case .failure(let error):
-                print(error)
+                output?.fetchCharactersFailed(error: error)
             }
         }
         

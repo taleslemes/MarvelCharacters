@@ -1,5 +1,5 @@
 //
-//  CharactersViewModel.swift
+//  CharactersPresenter.swift
 //  MarvelCharacters
 //
 //  Created by Tales Lemes on 23/05/20.
@@ -8,14 +8,17 @@
 
 import Foundation
 
-final class CharactersViewModel {
+final class CharactersPresenter {
     
     // MARK: Properties
     
     private let service: CharactersServiceInput
+    weak var view: CharactersView?
     
     let title: String = "Characters"
-    var offset: Int = 0
+    private var offset: Int = 0
+    var isFetchingCharacters: Bool = false
+    var model: [Character] = []
     
     // MARK: Object Lifecycle
     
@@ -27,25 +30,36 @@ final class CharactersViewModel {
     // MARK: Public Methods
     
     func viewDidLoad() {
-        fetchCharacters(offset: offset)
+        view?.showLoader()
+        fetchCharacters()
     }
     
-    func fetchCharacters(offset: Int) {
+    func fetchCharacters() {
         service.fetchCharacters(offset: "\(offset)")
+        isFetchingCharacters = true
+        offset += 20
     }
         
 }
 
 // MARK: CharactersServiceOuput Interface Implementation
 
-extension CharactersViewModel: CharactersServiceOutput {
+extension CharactersPresenter: CharactersServiceOutput {
     
-    func fetchCharactersSucceeded(response: APIResponse) {
+    func fetchCharactersSucceeded(response: [Character]) {
+        for character in response {
+            self.model.append(character)
+        }
         
+        isFetchingCharacters = false
+        view?.hideLoader()
+        view?.reloadCollectionViewData()
     }
     
     func fetchCharactersFailed(error: Error) {
-        
+        isFetchingCharacters = false
+        view?.hideLoader()
+        view?.showError(message: error.localizedDescription)
     }
     
 }
