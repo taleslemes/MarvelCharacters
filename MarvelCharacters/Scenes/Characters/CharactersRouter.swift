@@ -10,7 +10,11 @@ import UIKit
 
 final class CharactersRouter {
     
+    // MARK: Properties
+    
     private weak var context: UIViewController?
+    
+    // MARK: Public Methods
     
     func makeViewController() -> UIViewController {
         let router = self

@@ -17,6 +17,12 @@ struct Character: Decodable {
 
 struct ThumbNail: Decodable {
     var path: String?
+    var imgExtension: String
+    
+    enum CodingKeys: String, CodingKey {
+        case path
+        case imgExtension = "extension"
+    }
 }
 
 struct Comics: Decodable {

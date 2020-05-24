@@ -15,6 +15,8 @@ final class CharacterCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.borderWidth = 3
+        imageView.layer.borderColor = UIColor.black.cgColor
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 5
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +28,7 @@ final class CharacterCell: UICollectionViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.Arial(withWeight: .bold, size: 20)
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
         label.numberOfLines = 2
         label.sizeToFit()
@@ -96,8 +98,7 @@ extension CharacterCell: CharacterCellView {
     }
     
     func setImage(with imageUrl: String) {
-//        imageView.loadImage(from:  "http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_xlarge.jpg", placeHolder: UIImage(named: "placeholder"))
-        imageView.loadImage(from: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")
+        imageView.loadImage(from: imageUrl, placeHolder: UIImage(named: "placeholder"))
     }
     
 }

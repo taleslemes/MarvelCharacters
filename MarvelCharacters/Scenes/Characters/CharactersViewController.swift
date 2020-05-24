@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CharactersViewController: UIViewController {
+final class CharactersViewController: CustomViewController {
     
     // MARK: Properties
     
@@ -56,14 +56,22 @@ final class CharactersViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barTintColor = .marvelRed
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white,
-                                                                   .font: UIFont.Arial(withWeight: .bold, size: 28)]
-        navigationItem.title = presenter.title
+        setupNavigationController()
     }
     
     // MARK: Setup Layout Methods
+    
+    private func setupNavigationController() {
+        navigationController?.navigationBar.barTintColor = .marvelRed
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.barStyle = .black
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
+
+        navigationTitleLabel.text = presenter.title
+    }
     
     private func setupCollectionView() {
         view.addSubview(collectionView)

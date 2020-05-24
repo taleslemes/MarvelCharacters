@@ -27,7 +27,19 @@ final class CharacterCellPresenter {
         self.view = view
         
         view.setTitle(with: model.name ?? "")
-
+        setImageView()
+    }
+    
+    // MARK: Private Methods
+    
+    private func setImageView() {
+        var imgUrl: String = ""
+        
+        if let path = model.thumbnail?.path, let imgExtension = model.thumbnail?.imgExtension {
+           imgUrl = path + "." + imgExtension
+        }
+        
+        view?.setImage(with: imgUrl)
     }
     
 }

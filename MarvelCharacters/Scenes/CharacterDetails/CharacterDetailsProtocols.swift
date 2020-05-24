@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+protocol CharacterDetailsView: AnyObject {
+    func setNavigationTitle(with text: String)
+    func setCharacterName(with text: String)
+    func setCharacterDescription(with text: String)
+    func setImage(with imageUrl: String)
+}
