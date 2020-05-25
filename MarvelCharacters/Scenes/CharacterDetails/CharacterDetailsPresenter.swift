@@ -41,8 +41,8 @@ final class CharacterDetailsPresenter {
     // MARK: Private Methods
     
     private func setCharacterDescription() {
-        let description = model.description?.isEmpty ?? true ? "There`s no description for this character yet." : model.description ?? ""
-        view?.setCharacterDescription(with: description)
+        let description = model.description == "" ? "There`s no description for this character yet." : model.description
+        view?.setCharacterDescription(with: description ?? "There`s no description for this character yet.")
     }
     
     private func setImageView() {

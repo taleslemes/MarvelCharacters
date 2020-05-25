@@ -11,3 +11,9 @@ import Foundation
 struct ComicSummary: Decodable {
     var name: String?
 }
+
+extension ComicSummary: Equatable {
+    static func == (lhs: ComicSummary, rhs: ComicSummary) -> Bool {
+        return lhs.name == rhs.name
+    }
+}
