@@ -12,19 +12,14 @@ final class ComicsPresenter {
     
     // MARK: Properties
     
-    let model: Comics
-    weak var view: CharacterDetailsView?
-    
+    let model: [ComicSummary]
     let title: String = "Comics"
     
     // MARK: Object Lifecycle
     
-    init(model: Comics) {
+    init(model: [ComicSummary]) {
         self.model = model
     }
-    
-    // MARK: Public Methods
-    
     
 }
 

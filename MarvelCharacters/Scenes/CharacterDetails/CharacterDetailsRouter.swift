@@ -38,7 +38,7 @@ final class CharacterDetailsRouter {
 
 extension CharacterDetailsRouter: CharacterDetailsRoutering {
     
-    func navigateToComicsScene(comics: Comics) {
+    func navigateToComicsScene(comics: [ComicSummary]) {
         let router = ComicsRouter(comics: comics)
         context?.navigationController?.pushViewController(router.makeViewController(), animated: true)
     }

@@ -28,22 +28,24 @@ final class CharacterDetailsPresenter {
     func viewDidLoad() {
         view?.setNavigationTitle(with: model.name ?? "")
         view?.setCharacterName(with: model.name ?? "")
+        shouldShowComicsButton()
         setCharacterDescription()
         setImageView()
     }
     
     func comicsButtonDidTap() {
-        router.navigateToComicsScene(comics: model.comics)
+        let comics = model.comics.items
+        router.navigateToComicsScene(comics: comics)
     }
     
     // MARK: Private Methods
     
-    func setCharacterDescription() {
+    private func setCharacterDescription() {
         let description = model.description?.isEmpty ?? true ? "There`s no description for this character yet." : model.description ?? ""
         view?.setCharacterDescription(with: "Description: \(description)")
     }
     
-    func setImageView() {
+    private func setImageView() {
         var imgUrl: String = ""
         
         if let path = model.thumbnail?.path, let imgExtension = model.thumbnail?.imgExtension {
@@ -51,6 +53,11 @@ final class CharacterDetailsPresenter {
         }
         
         view?.setImage(with: imgUrl)
+    }
+    
+    private func shouldShowComicsButton() {
+        let show = model.comics.items.count != 0
+        view?.shouldShowComicsButton(show: show)
     }
     
 }

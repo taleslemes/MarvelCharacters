@@ -13,8 +13,9 @@ protocol CharacterDetailsView: AnyObject {
     func setCharacterName(with text: String)
     func setCharacterDescription(with text: String)
     func setImage(with imageUrl: String)
+    func shouldShowComicsButton(show: Bool)
 }
 
 protocol CharacterDetailsRoutering: AnyObject {
-    func navigateToComicsScene(comics: Comics)
+    func navigateToComicsScene(comics: [ComicSummary])
 }

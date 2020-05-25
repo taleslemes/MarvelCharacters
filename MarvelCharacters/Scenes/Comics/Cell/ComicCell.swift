@@ -19,9 +19,8 @@ final class ComicCell: UITableViewCell {
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
         label.textColor = .black
-        label.font = .Arial(withWeight: .regular, size: 14)
+        label.font = .Arial(withWeight: .bold, size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "dadsaddsal klakdakds d;as dkadksakdal;dsadasd da das"
         
         return label
     }()
@@ -51,6 +50,7 @@ final class ComicCell: UITableViewCell {
     
     private func setupCell() {
         backgroundColor = .clear
+        selectionStyle = .none
     }
     
     private func createSubviews() {

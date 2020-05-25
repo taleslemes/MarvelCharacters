@@ -12,11 +12,11 @@ final class ComicsRouter {
     
     // MARK: Properties
     
-    private let comics: Comics
+    private let comics: [ComicSummary]
     
     // MARK: Object Lifecycle
     
-    init(comics: Comics) {
+    init(comics: [ComicSummary]) {
         self.comics = comics
     }
     

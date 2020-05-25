@@ -201,4 +201,8 @@ extension CharacterDetailsViewController: CharacterDetailsView {
         navigationTitleLabel.text = text
     }
     
+    func shouldShowComicsButton(show: Bool) {
+        comicsButton.isHidden = !show
+    }
+    
 }
