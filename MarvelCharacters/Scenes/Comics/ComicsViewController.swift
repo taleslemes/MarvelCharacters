@@ -15,7 +15,6 @@ final class ComicsViewController: CustomViewController {
     private lazy var tableView: UITableView = {
           let tableView = UITableView()
           tableView.dataSource = self
-//          tableView.delegate = self
           tableView.isScrollEnabled = true
           tableView.isUserInteractionEnabled = true
           tableView.register(ComicCell.self, forCellReuseIdentifier: ComicCell.identifier)
@@ -53,12 +52,12 @@ final class ComicsViewController: CustomViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setupNavigationController()
+        setupNavigationBar()
     }
     
     // MARK: Setup Layout Methods
     
-    private func setupNavigationController() {
+    private func setupNavigationBar() {
         navigationTitleLabel.text = presenter.title
     }
 

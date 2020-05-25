@@ -24,11 +24,3 @@ struct ThumbNail: Decodable {
         case imgExtension = "extension"
     }
 }
-
-struct Comics: Decodable {
-    var items: [ComicSummary]
-}
-
-struct ComicSummary: Decodable {
-    var name: String?
-}

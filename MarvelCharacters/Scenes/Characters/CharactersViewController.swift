@@ -48,6 +48,8 @@ final class CharactersViewController: CustomViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
+        createSubviews()
         setupCollectionView()
         
         presenter.viewDidLoad()
@@ -63,11 +65,14 @@ final class CharactersViewController: CustomViewController {
     
     private func setupNavigationController() {
         navigationTitleLabel.text = presenter.title
+        
+    }
+    
+    private func createSubviews() {
+        view.addSubview(collectionView)
     }
     
     private func setupCollectionView() {
-        view.addSubview(collectionView)
-        
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

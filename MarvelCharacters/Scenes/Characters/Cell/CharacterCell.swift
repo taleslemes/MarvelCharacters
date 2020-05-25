@@ -118,7 +118,7 @@ extension CharacterCell: CharacterCellView {
     }
     
     func setImage(with imageUrl: String) {
-        imageView.loadImage(from: imageUrl, placeHolder: UIImage(named: "placeholder"))
+        imageView.loadImage(from: imageUrl)
     }
     
 }

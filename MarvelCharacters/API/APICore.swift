@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RxSwift
 
 protocol APIProvider: AnyObject {
     func request<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> Void)

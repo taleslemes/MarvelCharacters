@@ -41,7 +41,7 @@ final class CharacterDetailsViewController: CustomViewController {
     
     private let characterNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.Arial(withWeight: .bold, size: 26)
+        label.font = .Arial(withWeight: .bold, size: 26)
         label.textColor = .black
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -53,7 +53,7 @@ final class CharacterDetailsViewController: CustomViewController {
     private let characterDescriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.Arial(withWeight: .regular, size: 16)
+        label.font = .Arial(withWeight: .regular, size: 20)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false

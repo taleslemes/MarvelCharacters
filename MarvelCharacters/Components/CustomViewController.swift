@@ -34,12 +34,12 @@ class CustomViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setupNavigationController()
+        setupNavigationBar()
     }
     
     // MARK: Setup Layout Methods
     
-    private func setupNavigationController() {
+    private func setupNavigationBar() {
         navigationController?.navigationBar.barTintColor = .marvelRed
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barStyle = .black

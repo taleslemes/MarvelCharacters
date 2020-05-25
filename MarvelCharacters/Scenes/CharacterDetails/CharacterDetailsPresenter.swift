@@ -42,7 +42,7 @@ final class CharacterDetailsPresenter {
     
     private func setCharacterDescription() {
         let description = model.description?.isEmpty ?? true ? "There`s no description for this character yet." : model.description ?? ""
-        view?.setCharacterDescription(with: "Description: \(description)")
+        view?.setCharacterDescription(with: description)
     }
     
     private func setImageView() {
