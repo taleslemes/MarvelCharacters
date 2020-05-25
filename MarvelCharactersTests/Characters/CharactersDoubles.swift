@@ -50,7 +50,6 @@ final class CharactersRouterSpy: CharactersRoutering {
     
 }
 
-
 // MARK: CharacterServiceSpy
 
 final class CharactersServiceSpy: CharactersServiceInput {
@@ -65,10 +64,40 @@ final class CharactersServiceSpy: CharactersServiceInput {
     
 }
 
+// MARK: CharacterCellViewSpy
+
+final class CharacterCellViewSpy: CharacterCellView {
+    
+    private(set) var setTitleCalled = false
+    private(set) var titleTextPassed: String?
+    func setTitle(with text: String) {
+        setTitleCalled = true
+        titleTextPassed = text
+    }
+    
+    private(set) var setImageCalled = false
+    private(set) var imageUrlPassed: String?
+    func setImage(with imageUrl: String) {
+        setImageCalled = true
+        imageUrlPassed = imageUrl
+    }
+    
+}
+
+// MARK: Thumbnail Extension
+
+extension ThumbNail {
+    static func fixture(path: String? = "",
+                        imgExtension: String = ""
+    ) -> ThumbNail {
+        return ThumbNail(path: path, imgExtension: imgExtension)
+    }
+}
+
 // MARK: Character Extension
 
 extension Character {
-    static func fixture(name: String = "",
+    static func fixture(name: String? = "",
                         thumbnail: ThumbNail? = nil,
                         comics: Comics = Comics(items: []),
                         description: String? = ""

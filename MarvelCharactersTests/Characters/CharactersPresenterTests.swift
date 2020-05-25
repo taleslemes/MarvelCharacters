@@ -82,16 +82,3 @@ final class CharactersPresenterTests: XCTestCase {
     }
     
 }
-
-//extension Comics {
-//    static func fixture() -> Comics {
-//        return Comics(items: [ComicSummary(
-//        ])
-//    }
-//}
-//
-//extension ComicSummary {
-//    static func fixture(name: String = "") -> ComicSummary {
-//        return ComicSummary(name: name)
-//    }
-//}
