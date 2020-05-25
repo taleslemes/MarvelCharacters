@@ -20,6 +20,9 @@ A Service Layer is used in order to access the remote data found in The Marvel A
 ## Layout
 The whole layout was designed using view code approach and the screens were developed to fit well on different iPhone models.
 
+## Unit Tests
+Once the Presenter is the most critical layer found in each scene, all of them were fully tested, reaching a code coverage of 100% on them.
+
 ## External Dependencies
 CryptoSwift pod was used in this project in order to generate a hash necessary to fetch data from Marvel API  ​https://cocoapods.org/pods/CryptoSwift. 
 
