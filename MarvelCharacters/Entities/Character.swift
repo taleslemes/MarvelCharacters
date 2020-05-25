@@ -24,3 +24,9 @@ struct ThumbNail: Decodable {
         case imgExtension = "extension"
     }
 }
+
+extension Character: Equatable {
+    static func == (lhs: Character, rhs: Character) -> Bool {
+        return lhs.name == rhs.name
+    }
+}
